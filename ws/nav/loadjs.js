@@ -3,7 +3,7 @@
  * @deprecated blog: cnblogs.com/solq
  * */
  
-var _path = require("path");
+//var _path = require("path");
 module.exports = {	
 	auto_webHelper : null,
 	auto_appContext : null,
@@ -15,9 +15,9 @@ module.exports = {
 			'./static/js/core' :{}
 		},'.js',function(filePath,obj){
 		
-			var	id =_path.basename(filePath).replace('.js','');	
+			//var	id =_path.basename(filePath).replace('.js','');	
 			
-			$this.cache_data[filePath.replace('./','/')] = $this.auto_appContext.getKey(id);
+			$this.cache_data[filePath.replace('./','/')] = 1;
 		});
 	},	
 	'get:/loadjs':{

@@ -42,6 +42,7 @@ var  AppContext={
 		debug( "end init : =============================================");		
  
 	},
+
 	findContainer : function(key){
 		key = this.getKey(key);
 		return this.data[key];
@@ -63,36 +64,30 @@ var  AppContext={
 	data : {}
 };
  
- //处理功能方法
-var _injection = function(container){
-	var id = container.id;
- 	AppContext.addContainer(id,container); 	
-	return container;
-}
-
+//处理功能方法
+//动态加态 JS 文件，文件列表由服务器自动扫描
 var _scan = function(){
 	$.ajax({
 		type: "get",
 		url: "/ws/loadjs",
 		dataType : 'json',
+		async:false,
 		success : function(json){
 			for(var i in json){
-				debug(i);
-				var id = json[id];
-				if(id == 'appContext'){
-					continue;
-				}
 				
-				requirejs(i,function(a,b,c){
-					
-					debug(a,b,c);
+				if(i.indexOf('AppContext.js')>-1){
+					continue;
+				}				
+				$.ajax({
+					async:false,
+					type:'GET',
+					url:i,
+					dataType:'script'
 				});
+				debug("load js file :",i);
 			}			
 		}
-	})
-	 
-	//	var id=_injection(filePath,container).id;
-	//	debug( "injection : ",id, filePath);
+	});
 }
 
 var _auto_injection_field = function(){
@@ -121,6 +116,7 @@ var _auto_injection_field = function(){
 }
 
 var _init = function(){
+ 
 	//为什么分三个初始化阶段呢	
 	//postConstruct 为应用层初始化，如果做服务层扩展的话，就要在应用层初始化之前准备工作，这下明了吧
 	for(var id in AppContext.data){
@@ -137,6 +133,7 @@ var _init = function(){
 		var container = AppContext.findContainer(id);
 		container.postConstruct!=null && container.postConstruct(AppContext);
 	}
+	
 }
 
 var _reload = function(){
@@ -152,3 +149,5 @@ var _end = function(){
 		container.preDestroy!=null && container.preDestroy(AppContext);	 
 	}
 }
+
+AppContext.addContainer("appContext",AppContext);

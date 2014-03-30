@@ -18,6 +18,12 @@ var appConfig={
 		'./core' : {
 			injectionType : 'core'
 		}
-	} 
+	},
+		
+	awake : function(){
+		console.log( "appConfig awake : =============================================");
+	},
 };
+
+AppContext.addContainer("appConfig",appConfig);
  
