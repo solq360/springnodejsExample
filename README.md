@@ -1,4 +1,4 @@
-springnodejs
+springnodejsExample
 ============
 如果觉得还行，请我喝瓶水
 [![Gittip](https://img.alipay.com/sys/personalprod/style/mc/btn-index.png)](http://me.alipay.com/solq)
@@ -13,6 +13,7 @@ blog :
 * http://www.springnodejs.com/
 
 git : https://github.com/solq360/springnodejs
+	https://github.com/solq360/springnodejsExample.git
 
 QQ群:9547527
  

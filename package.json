@@ -1,18 +1,19 @@
 {
-  "name": "springnodejs",
+  "name": "springnodejsExample",
   "version": "0.0.1",
-  "description": "springnodejs",
+  "description": "springnodejsExample",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/solq360/springnodejs"
+    "url": "https://github.com/solq360/springnodejsExample"
   },
   "keywords": [
     "springnodejs",
-    "springjs"
+    "springjs",
+    "springnodejsExample"
   ],
   "author": "solq",
   "license": "GNU",
