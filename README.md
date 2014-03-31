@@ -113,7 +113,76 @@ module.exports = {
 是不是自动注入你写的服务了?
 auto_(容器ID) 就可以注入
 
-写起来真累，先写在这里大家反复练习一下，然后总结一下这样做有什么好处
+REST 
+============
+./ws/test/test.js 新建JS
+
+```
+module.exports = {
+	'get:/test':{
+  		controller : function(){				 		
+			return {'key':'hello rest'};			
+ 		}
+	}
+};
+```
+./static/js/main.js 添加
+```
+$.ajax({
+	type : 'get',
+	dataType : 'json',
+	url : '/ws/test',
+	success : function(json){
+		alert(json.key);
+	}
+});
+```
+然后 node app.js
+
+传送参数
+```
+module.exports = {
+	'get:/test':{
+  		controller : function(){				 		
+			return {'key':'hello rest'};			
+ 		}
+	} ,
+	'/test/{path1}/{path2}':{
+  		controller : function(path_path1,path_path2,param_array_p1,param_int_p2,body_body){				 		
+			
+  			console.log("path_p1 = " , path_path1);	
+  			console.log("path_p2 = " , path_path2);
+  			console.log("param_array_p1 = " , param_array_p1);
+  			
+  			console.log("param_int_p2 = " , param_int_p2);
+  			console.log("body_body = " , body_body);
+  			return body_body;			
+ 		}
+	} 
+};
+```
+前端
+```
+var post_data = {p1:'xxx',p2:'555'};
+$.ajax({
+	type : 'get',
+	dataType : 'json',
+	url : '/ws/test/a/b',
+	data : post_data,
+	success : function(json){
+		console.log(json);
+	}
+});
+```
+* path_ 标识会将路径截取
+* param_ 标识会将 请求参数截取
+* body_ 标识会将请求参数变成 json
+* array_ 数据类型转换 array
+* int_ 数据类型转换 int
+* req,res,不用说了吧?
+
+
+相信你会爱上这风格
 
 
  
