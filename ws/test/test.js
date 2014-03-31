@@ -8,7 +8,7 @@ module.exports = {
 			return {'key':'hello rest'};			
  		}
 	} ,
-	'/test/{path1}/{path2}':{
+	'get|post:/test/{path1}/{path2}':{
   		controller : function(path_path1,path_path2,param_array_p1,param_int_p2,body_body){				 		
 			
   			console.log("path_p1 = " , path_path1);

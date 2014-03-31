@@ -11,7 +11,7 @@
 	});
 	var post_data = {p1:'xxx',p2:'555'};
 	$.ajax({
-		type : 'get',
+		type : 'post',
 		dataType : 'json',
 		url : '/ws/test/a/b',
 		data : post_data,

@@ -1,6 +1,6 @@
 {
   "name": "springnodejsExample",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "springnodejsExample",
   "main": "app.js",
   "scripts": {
@@ -17,5 +17,8 @@
   ],
   "author": "solq",
   "license": "GNU",
-  "readmeFilename": "README.md"
+  "bugs": {
+    "url": "https://github.com/solq360/springnodejsExample/issues"
+  },
+  "homepage": "https://github.com/solq360/springnodejsExample"
 }
