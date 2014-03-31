@@ -137,7 +137,10 @@ $.ajax({
 	}
 });
 ```
-然后 node app.js
+然后 node app.js 注意看控制台
+在浏览器输入
+http://127.0.0.1:8888
+或者 http://127.0.0.1:8888/ws/test
 
 传送参数
 ```
@@ -147,10 +150,10 @@ module.exports = {
 			return {'key':'hello rest'};			
  		}
 	} ,
-	'/test/{path1}/{path2}':{
+	'get|post:/test/{path1}/{path2}':{
   		controller : function(path_path1,path_path2,param_array_p1,param_int_p2,body_body){				 		
 			
-  			console.log("path_p1 = " , path_path1);	
+  			console.log("path_p1 = " , path_path1);
   			console.log("path_p2 = " , path_path2);
   			console.log("param_array_p1 = " , param_array_p1);
   			
@@ -165,7 +168,7 @@ module.exports = {
 ```
 var post_data = {p1:'xxx',p2:'555'};
 $.ajax({
-	type : 'get',
+	type : 'post',
 	dataType : 'json',
 	url : '/ws/test/a/b',
 	data : post_data,
@@ -174,6 +177,11 @@ $.ajax({
 	}
 });
 ```
+然后 node app.js 注意看控制台
+在浏览器输入
+http://127.0.0.1:8888
+或者 http://127.0.0.1:8888/ws/test/aaa/bbb?p1=p111&p2=333
+
 * path_ 标识会将路径截取
 * param_ 标识会将 请求参数截取
 * body_ 标识会将请求参数变成 json
