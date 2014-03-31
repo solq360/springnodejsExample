@@ -35,9 +35,7 @@ var appConfig={
 		'./config' : {
 			injectionType : 'config'
 		},
-		'./aop' : {
-			injectionType : 'aop'
-		},
+
 		'./module' : {
 			injectionType : 'service'
 		},
@@ -47,7 +45,10 @@ var appConfig={
 			//include : [],
 			exclude : ['./ws/test/test1.js']
 		},
-		/*'./api' : {
+		/*
+		 './aop' : {
+			injectionType : 'aop'
+		},'./api' : {
 			filter : '\\api', //url 服务 过滤器
 			injectionType : 'controller'
 		}*/
