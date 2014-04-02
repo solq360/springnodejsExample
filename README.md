@@ -192,6 +192,65 @@ http://127.0.0.1:8888
 
 相信你会爱上这风格
 
+COOKIE
+============
+
+./ws/test/testcookie.js 新建JS
+```
+module.exports = {
+	'/test/cookie':{
+  		controller : function(cookie){
+  			cookie.set("key1","value1");	
+  			cookie.set("key2","value1");
+  			cookie.remove("key1");
+  			console.log("cookie key1 value : ",cookie.get("key1"));			 		
+  			console.log("cookies : ",cookie.valueOf());			 		
+			return cookie;			
+ 		}
+	},
+	'/test/cookie2':{
+		controller : function(cookie){
+			cookie.set("key1","value1"/*,{ domain : '',path :'',expires:'',httpOnly:true,secure }*/);	
+			return cookie;			
+		}
+	}
+};
+```
+然后 node app.js 注意看浏览器控制台
+在浏览器输入
+http://127.0.0.1:8888/ws/test/cookie
+查看控制器响应请求 cookie值
+
+SESSION
+============
+./ws/test/testsession.js 新建JS
+```
+module.exports = {
+	auto_sessionManager : null,
+	'/test/session':{
+  		controller : function(cookie){
+  			var session = this.auto_sessionManager.createSession(555); 
+            cookie.set(SessionKey.uuid , session.id );          
+			return session;			
+ 		}
+	},
+	
+	'/test/session/attr':{
+        controller : function(request,cookie, session ){
+			return session.getAttr(SessionKey.lastTime);
+        }
+    }
+};
+```
+session 核心处理在 /core/session 目录
+流程 :
+* 1 登陆时候判断cookie 有没有保存 session id, 然 cookie key 为 SessionKey.uuid 
+* 2 生成 session 后, session id 要保存在 cookie 
+* 定义自己的 session 控制逻辑 /core/session/sessionManager.js createSession 方法
+
+
+
+
 
  
 如果觉得还行，请我喝瓶水
