@@ -6,13 +6,12 @@ class RamCacheService {
     //    constructor() {
     //        throw new Error("Cannot new this class");
     //    }
-
+    private entityMetadata: EntityMetadata;
+    
     private accessor: Accessor;
     private querier: Querier;
+    
     private cacheData: { [id: string]: Entity; } = {};
-    private entityMetadata: EntityMetadata;
-    //  private cacheConfig: CacheConfig;
-
     private addCacheData(entity: Entity) {
         var id: string = entity.getId();
         this.cacheData[id] = entity;
@@ -35,10 +34,10 @@ class RamCacheService {
             var datas: Array<Entity>;
             switch (initCacheConfig.initType) {
                 case InitCacheType.ALL:
-                    datas = this.querier.all(name);
+                    datas = this.querier.findAll(name);
                     break;
                 case InitCacheType.QUERY:
-                    datas = this.querier.query(name, initCacheConfig.queryValue);
+                    datas = this.querier.find(name, initCacheConfig.queryValue);
                     break;
                 default:
                     return;
@@ -58,7 +57,6 @@ class RamCacheService {
         result.accessor = accessor;
         result.querier = querier;
         result.entityMetadata = entityMetadata;
-        // result.cacheConfig = cacheConfig;
         result.initCacheData();
         return result;
     }

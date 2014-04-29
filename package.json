@@ -1,7 +1,7 @@
 {
-  "name": "springnodejsExample",
-  "version": "0.0.2",
-  "description": "springnodejsExample",
+  "name": "springnodejsexample",
+  "version": "0.0.5",
+  "description": "springnodejsexample",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,11 @@
   "keywords": [
     "springnodejs",
     "springjs",
-    "springnodejsExample"
+    "spring",
+    "rest",
+    "ioc",
+    "aop",
+    "springnodejsexample"
   ],
   "author": "solq",
   "license": "GNU",

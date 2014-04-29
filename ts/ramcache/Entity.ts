@@ -22,6 +22,12 @@ class EntityConfig {
         };
         return result;
     }
+    static valueOfEntity(data: any, entity: any): Entity {
+        for (var key in entity) {
+            data[key] = entity[key];
+        }
+        return entity;
+    }
 }
 
 

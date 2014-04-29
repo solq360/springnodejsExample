@@ -3,7 +3,7 @@
 //抽象示例
 
 var mysqlQuerier: Querier = new MysqlQuerier();
-var data: Array<Entity> = mysqlQuerier.all(EntityName.user);
+var data: Array<Entity> = mysqlQuerier.findAll(EntityName.user);
 
 var testEntity: Entity = {
     getId(): any{

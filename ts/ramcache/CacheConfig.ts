@@ -1,5 +1,6 @@
-/***缓存配置
-队列+实时
+/***
+    缓存配置
+    队列+实时
 */
 interface CacheConfig {
     //最大队列
@@ -8,7 +9,6 @@ interface CacheConfig {
     timeTirgger: number;
     //初始化配置
     initCacheConfig?: InitCacheConfig;
-
 }
 /**初始化配置**/
 interface InitCacheConfig {
@@ -17,6 +17,7 @@ interface InitCacheConfig {
     //查询语句
     queryValue?: string;
 }
+
 class InitCacheType {
     static NOT: string = "NOT";
     static ALL: string = "ALL";
