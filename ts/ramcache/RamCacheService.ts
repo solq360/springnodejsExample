@@ -7,10 +7,10 @@ class RamCacheService {
     //        throw new Error("Cannot new this class");
     //    }
     private entityMetadata: EntityMetadata;
-    
+
     private accessor: Accessor;
     private querier: Querier;
-    
+
     private cacheData: { [id: string]: Entity; } = {};
     private addCacheData(entity: Entity) {
         var id: string = entity.getId();
@@ -40,13 +40,15 @@ class RamCacheService {
                     datas = this.querier.find(name, initCacheConfig.queryValue);
                     break;
                 default:
-                    return;
                     break;
             }
             for (var entity in datas) {
                 this.addCacheData(entity);
             }
         }
+
+        //注册持久化监听器
+        this.accessor.persister(name);
 
     }
 
@@ -62,15 +64,21 @@ class RamCacheService {
     }
     /**加载或者创建实体 */
     loadOrCreate(id: any, callback: (id: any) => Entity): Entity {
+        //cache > db 
         var resultEntity: Entity = this.getCacheData(id);
+        var isSave :boolean =false;
         if (resultEntity == null) {
             var name = this.entityMetadata.entityName;
             resultEntity = this.accessor.load(name, id);
+            isSave = true;
         }
 
         if (resultEntity == null) {
             resultEntity = callback(id);
             this.save(resultEntity);
+        }
+        if(isSave){
+            this.addCacheData(resultEntity);
         }
         return resultEntity;
     }
@@ -94,6 +102,10 @@ class RamCacheService {
     getEntityMetadata(): EntityMetadata {
         return this.entityMetadata;
     }
+
+    //private
+
+
 }
 
 declare var module: any;
